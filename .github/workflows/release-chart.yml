@@ -196,4 +196,3 @@ jobs:
           signoff: true
           token: ${{ secrets.GITHUB_TOKEN }}
           labels: ${{ env.PR_LABEL }}
-          reviewers: ${{ env.PR_REVIWER }}
