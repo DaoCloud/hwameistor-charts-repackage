@@ -42,18 +42,13 @@ jobs:
               if ${{ github.event.inputs.project == '' }} ; then
                   echo "name=project::all" >>$GITHUB_OUTPUT
               else
-#                  echo ::set-output name=project::${{ github.event.inputs.project }}
                   echo "name=project::${{ github.event.inputs.project }}" >>$GITHUB_OUTPUT
               fi
-              # release to github pages
-#              echo ::set-output name=release::${{ github.event.inputs.daocloud }}
-#              echo ::set-output name=ref::${{ github.event.inputs.ref }}
-#              echo ::set-output name=publishversion::false
-               
+              # release to github pages  
               echo "name=release::${{ github.event.inputs.daocloud }}" >>$GITHUB_OUTPUT
               echo "name=ref::${{ github.event.inputs.ref }}" >>$GITHUB_OUTPUT
               echo "name=publishversion::false" >>$GITHUB_OUTPUT  
-               
+          
                elif ${{ github.event_name == 'push' }} ; then
               echo "call by tag push"          
               echo "name=project::all" >>$GITHUB_OUTPUT
@@ -61,7 +56,7 @@ jobs:
               # release to github pages
               echo "name=ref::${GITHUB_REF##*/}" >>$GITHUB_OUTPUT
               echo "name=publishversion::true" >>$GITHUB_OUTPUT
- 
+          
           else
             echo "unexpected event: ${{ github.event_name }}"
             exit 1
@@ -78,7 +73,6 @@ jobs:
         id: result
         run: |
           ref=$( git show -s --format='format:%H')
-#          echo ::set-output name=ref::${ref}
           echo "name=ref::${ref}" >>$GITHUB_OUTPUT
 
       - name: Set up Helm
@@ -104,7 +98,6 @@ jobs:
               [ ! -d "${ROOT_DIR}/charts/${ITEM}/${ITEM}" ] && echo "error, failed to find project $ITEM in /charts" && exit 1
               helm package ${ROOT_DIR}/charts/${ITEM}/${ITEM}
           done
-#          echo ::set-output name=project_list::${project_list}
           echo "name=project_list::${project_list}" >>$GITHUB_OUTPUT
 
       - name: Upload chart artifact
@@ -172,7 +165,6 @@ jobs:
           name=${{ github.repository }}
           proj=${name#*/}
           url=https://${{ github.repository_owner }}.github.io/${proj}
-#          echo "::set-output name=url::${url}"
           echo "name=url::${url}" >>$GITHUB_OUTPUT
 
       - name: Checkout Code
