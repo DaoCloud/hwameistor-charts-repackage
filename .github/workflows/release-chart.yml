@@ -3,7 +3,7 @@ name: Release Chart
 env:
   MERGE_BRANCH: gh-pages
   PR_LABEL: pr/release/robot_update_githubpage
-  PR_REVIWER: weizhoublue
+  PR_REVIWER: lijie
   DAOCLOUD_HARBOR_URL: https://release.daocloud.io
 
 on:
