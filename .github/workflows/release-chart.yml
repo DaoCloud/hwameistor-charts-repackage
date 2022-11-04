@@ -75,6 +75,8 @@ jobs:
 
       - name: Set up Helm
         uses: azure/setup-helm@v3.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: package chart
         id: package
