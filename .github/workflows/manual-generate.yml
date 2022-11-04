@@ -4,7 +4,7 @@ name: Call Generate Chart
 env:
   MERGE_BRANCH: main
   PR_LABEL: pr/release/robot_update_chart
-  PR_REVIWER: weizhoublue
+  PR_REVIWER: lijie
 
 on:
   workflow_dispatch:
@@ -99,6 +99,6 @@ jobs:
           delete-branch: true
           base: ${{ env.MERGE_BRANCH }}
           signoff: true
-          token: ${{ secrets.WELAN_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           labels: ${{ env.PR_LABEL }}
           reviewers: ${{ env.PR_REVIWER }}
