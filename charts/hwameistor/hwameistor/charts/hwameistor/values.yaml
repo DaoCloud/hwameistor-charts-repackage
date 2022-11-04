@@ -44,6 +44,9 @@ admission:
   replicas: 1
   imageRepository: hwameistor/admission
   resources: {}
+  # failurePolicy defines how unrecognized errors from the admission endpoint
+  # are handled - allowed values are Ignore or Fail. Defaults to Fail.
+  failurePolicy: ""
   # self-signed is a tool image for generating self-signed certs used by api-server
   selfSigned:
     imageRepository: hwameistor/self-signed
@@ -95,6 +98,11 @@ localStorage:
       maxHAVolumeCount:
     imageRepository: hwameistor/local-storage
     resources: {}
+  migrate:
+    rclone:
+      # can use daocloud.io/daocloud/hwameistor-migrate-rclone:v1.1.2 which is exactly same as the following
+      imageRepository: rclone/rclone
+      tag: 1.53.2
 
 localStorageCSIController:
   replicas: 1
