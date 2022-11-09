@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'charts/*/*/values.yaml'
+      - 'charts/**'
 
 jobs:
   update-readme-metadata:
@@ -28,12 +28,10 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('readme-generator-for-helm/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
-
       - name: Install readme-generator-for-helm dependencies
         run: |
           cd readme-generator-for-helm
           npm install
-
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
@@ -61,11 +59,9 @@ jobs:
             readme-generator-for-helm/bin/index.js --values "thisPorject/charts/${ITEM}/${ITEM}/values.yaml" --readme "thisPorject/charts/${ITEM}/${ITEM}/README.md" --schema "/tmp/schema.json"
             cat thisPorject/charts/${ITEM}/${ITEM}/README.md
           done
-
       - name: remove readme-generator-for-helm
         run: |
           rm -rf readme-generator-for-helm
-
 #      - name: Push changes
 #        run: |
 #          # Push all the changes
