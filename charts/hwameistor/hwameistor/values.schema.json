@@ -66,115 +66,99 @@
                 }
             }
         },
-        "storageClass": {
+        "storage class": {
             "title": "Storage Class Settings",
-            "type": "object",
-            "default": {},
-            "required": [
-                "DiskType",
-                "ProvisionerType",
-                "EnableHA",
-                "Replicas",
-                "ReclaimPolicy",
-                "Snapshot",
-                "Resize",
-                "VolumeBindingMode"
-            ],
-            "properties": {
-                "DiskType": {
-                    "title": "DiskType",
-                    "type": "string",
-                    "anyOf": [
-                        {
-                            "title": "机械硬盘(HDD)",
-                            "const": "机械硬盘(HDD)"
-                        },
-                        {
-                            "ui:title": "固态硬盘(SSD)",
-                            "const": "固态硬盘(SSD)"
-                        }
-                    ],
-                    "default": "机械硬盘(HDD)",
-                    "description": "Represent which kind disk will be used to provision volume"
-                },
-                "ProvisionerType": {
-                    "title": "ProvisionerType",
-                    "type": "string",
-                    "anyOf": [
-                        {
-                            "title": "LVM",
-                            "const": "LVM"
-                        },
-                        {
-                            "ui:title": "Raw Disk",
-                            "const": "Raw Disk"
-                        }
-                    ],
-                    "default": "LVM"
-                },
-                "EnableHA": {
-                    "title": "EnableHA",
-                    "type": "boolean",
-                    "description": "If enabled, you need install drbd kernel module on each node first",
-                    "default": "true"
-                },
-                "Replicas": {
-                    "title": "Replicas",
-                    "type": "integer",
-                    "default": 1,
-                    "description": "Replicas can be converted from 1 to 2 when HA is enabled"
-                },
-                "ReclaimPolicy": {
-                    "title": "ReclaimPolicy",
-                    "type": "string",
-                    "anyOf": [
-                        {
-                            "ui:title": "Retain",
-                            "const": "Retain"
-                        },
-                        {
-                            "ui:title": "Delete",
-                            "const": "Delete"
-                        }
-                    ],
-                    "default": "Retain"
-                },
-                "Snapshot": {
-                    "title": "Snapshot",
-                    "type": "boolean",
-                    "default": true,
-                    "description": "是否开启"
-                },
-                "Resize": {
-                    "title": "Resize",
-                    "type": "boolean",
-                    "default": false,
-                    "description": "是否开启"
-                },
-                "VolumeBindingMode": {
-                    "title": "VolumeBindingMode",
-                    "type": "string",
-                    "anyOf": [
-                        {
-                            "title": "WaitForFirstConsumer",
-                            "const": "WaitForFirstConsumer"
-                        },
-                        {
-                            "ui:title": "Immediate",
-                            "const": "Immediate"
-                        }
-                    ],
-                    "default": "WaitForFirstConsumer",
-                    "description": "PVC will wait to be created until it is mounted to pod"
-                },
-                "Add": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/node"
+            "type": "array",
+            "items": {
+                "properties": {
+                    "DiskType": {
+                        "title": "DiskType",
+                        "type": "string",
+                        "anyOf": [
+                            {
+                                "title": "机械硬盘(HDD)",
+                                "const": "机械硬盘(HDD)"
+                            },
+                            {
+                                "ui:title": "固态硬盘(SSD)",
+                                "const": "固态硬盘(SSD)"
+                            }
+                        ],
+                        "default": "机械硬盘(HDD)",
+                        "description": "Represent which kind disk will be used to provision volume"
+                    },
+                    "ProvisionerType": {
+                        "title": "ProvisionerType",
+                        "type": "string",
+                        "anyOf": [
+                            {
+                                "title": "LVM",
+                                "const": "LVM"
+                            },
+                            {
+                                "ui:title": "Raw Disk",
+                                "const": "Raw Disk"
+                            }
+                        ],
+                        "default": "LVM"
+                    },
+                    "EnableHA": {
+                        "title": "EnableHA",
+                        "type": "boolean",
+                        "description": "If enabled, you need install drbd kernel module on each node first",
+                        "default": "true"
+                    },
+                    "Replicas": {
+                        "title": "Replicas",
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Replicas can be converted from 1 to 2 when HA is enabled"
+                    },
+                    "ReclaimPolicy": {
+                        "title": "ReclaimPolicy",
+                        "type": "string",
+                        "anyOf": [
+                            {
+                                "ui:title": "Retain",
+                                "const": "Retain"
+                            },
+                            {
+                                "ui:title": "Delete",
+                                "const": "Delete"
+                            }
+                        ],
+                        "default": "Retain"
+                    },
+                    "Snapshot": {
+                        "title": "Snapshot",
+                        "type": "boolean",
+                        "default": true,
+                        "description": "If enabled, volume can support snapshot feature"
+                    },
+                    "Resize": {
+                        "title": "Resize",
+                        "type": "boolean",
+                        "default": false,
+                        "description": "If enabled, volume can support resize feature"
+                    },
+                    "VolumeBindingMode": {
+                        "title": "VolumeBindingMode",
+                        "type": "string",
+                        "anyOf": [
+                            {
+                                "title": "WaitForFirstConsumer",
+                                "const": "WaitForFirstConsumer"
+                            },
+                            {
+                                "ui:title": "Immediate",
+                                "const": "Immediate"
+                            }
+                        ],
+                        "default": "WaitForFirstConsumer",
+                        "description": "PVC will wait to be created until it is mounted to pod"
                     }
                 }
             }
         }
     }
 }
-

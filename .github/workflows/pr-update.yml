@@ -8,60 +8,7 @@ on:
       - 'charts/**'
 
 jobs:
-  update-readme-metadata:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout bitnami-labs/readme-generator-for-helm
-        uses: actions/checkout@v3
-        with:
-          repository: 'bitnami-labs/readme-generator-for-helm'
-          ref: '1af12881436b1f58f0643d733fd5196b4a11caa8'
-          path: readme-generator-for-helm
 
-      - name: Cache node modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('readme-generator-for-helm/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-      - name: Install readme-generator-for-helm dependencies
-        run: |
-          cd readme-generator-for-helm
-          npm install
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          ref: ${{github.event.pull_request.head.ref}}
-          path: thisPorject
-
-      - name: Execute readme-generator-for-helm
-        run: |
-          # Using the Github API to detect the files changed as git merge-base stops working when the branch is behind
-          # and jitterbit/get-changed-files does not support pull_request_target
-          URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
-          files_changed_data=$(curl -s --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' -X GET -G "$URL")
-          echo "files_changed_data: $files_changed_data"
-          files_changed="$(echo $files_changed_data | jq -r '.[] | .filename')"
-          echo "files_changed: $files_changed"
-          #--------------------
-          # Adding || true to avoid "Process exited with code 1" errors
-          charts_changed="$(echo "$files_changed" | xargs dirname | grep -E -o "charts/([^/]*)/\1" | grep -o "charts/[^/]*" | sort | uniq | awk -F'/' '{print $2}' | tr '\n' ' ' || true)"
-          echo "charts_changed: $charts_changed"
-          echo "ls: `ls` "
-          echo "ls: `ls readme-generator-for-helm` " || true
-          echo "ls: `ls readme-generator-for-helm/bin` " || true
-          for ITEM in $charts_changed ; do
-            echo "------ Updating README.md for ${ITEM}"
-            readme-generator-for-helm/bin/index.js --values "thisPorject/charts/${ITEM}/${ITEM}/values.yaml" --readme "thisPorject/charts/${ITEM}/${ITEM}/README.md" --schema "/tmp/schema.json"
-            cat thisPorject/charts/${ITEM}/${ITEM}/README.md
-          done
-      - name: remove readme-generator-for-helm
-        run: |
-          rm -rf readme-generator-for-helm
 #      - name: Push changes
 #        run: |
 #          # Push all the changes
