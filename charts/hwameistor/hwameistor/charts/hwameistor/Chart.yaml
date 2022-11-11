@@ -1,9 +1,5 @@
 apiVersion: v2
 appVersion: v0.4.2
-dependencies:
-- name: hwameistor
-  repository: http://hwameistor.io/hwameistor
-  version: v0.4.2
 description: the HwameiStor local storage
 name: hwameistor
 type: application
