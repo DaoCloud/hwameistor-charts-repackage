@@ -1,4 +1,4 @@
-export USE_OPENSOURCE_CHART=true
+export USE_OPENSOURCE_CHART=false
 
 # must
 export REPO_URL=http://hwameistor.io/hwameistor
