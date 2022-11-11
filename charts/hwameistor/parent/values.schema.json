@@ -41,6 +41,9 @@
         "config": {
             "title": "Config Settings",
             "type": "object",
+            "ui:options": {
+                "onlyShowIfDependent": true
+            },
             "default": {},
             "required": [
                 "EnableDRBD",
@@ -51,8 +54,7 @@
                 "EnableDRBD": {
                     "title": "EnableDRBD",
                     "type": "boolean",
-                    "description": "drbd module will be installed, StorageClass can be enabled HA mode when DRBD enabled",
-                    "default": true
+                    "description": "drbd module will be installed, StorageClass can be enabled HA mode when DRBD enabled"
                 },
                 "DRBDStartPort": {
                     "title": "DRBDStartPort",
@@ -106,7 +108,7 @@
                         "title": "EnableHA",
                         "type": "boolean",
                         "description": "If enabled, you need install drbd kernel module on each node first",
-                        "default": "true"
+                        "ui:hidden": "{{rootFormData.config.EnableDRBD === false}}"
                     },
                     "Replicas": {
                         "title": "Replicas",
