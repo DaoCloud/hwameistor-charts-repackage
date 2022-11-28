@@ -2,7 +2,7 @@
 
 Hwameistor is an HA local storage system for cloud-native stateful workloads. It creates a local storage resource pool for centrally managing all disks such as HDD, SSD, and NVMe. It uses the CSI architecture to provide distributed services with local volumes and provides data persistence capabilities for stateful cloud-native workloads or components.
 
-![System architecture](architecture.png)
+![System architecture](charts/hwameistor/hwameistor/architecture.png)
 
 ## Current Status
 >At present, HwameiStor is still in the alpha stage.
@@ -75,7 +75,7 @@ Our slack channel is [here](https://join.slack.com/t/hwameistor/shared_invite/zt
 ### WeChat
 HwameiStor tech-talk group:
 
-![QR code for Wechat](wechat.png)
+![QR code for Wechat](charts/hwameistor/hwameistor/wechat.png)
 
 ## Discussion
 
