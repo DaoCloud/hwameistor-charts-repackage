@@ -51,7 +51,8 @@
                 "EnableDRBD": {
                     "title": "EnableDRBD",
                     "type": "boolean",
-                    "description": "drbd module will be installed, StorageClass can be enabled HA mode when DRBD enabled"
+                    "description": "drbd module will be installed, StorageClass can be enabled HA mode when DRBD enabled",
+                    "default": true
                 },
                 "DRBDStartPort": {
                     "title": "DRBDStartPort",
@@ -75,15 +76,15 @@
                         "type": "string",
                         "anyOf": [
                             {
-                                "title": "HDD",
-                                "const": "HDD"
+                                "title": "机械硬盘(HDD)",
+                                "const": "机械硬盘(HDD)"
                             },
                             {
-                                "ui:title": "SSD",
-                                "const": "SSD"
+                                "ui:title": "固态硬盘(SSD)",
+                                "const": "固态硬盘(SSD)"
                             }
                         ],
-                        "default": "HDD",
+                        "default": "机械硬盘(HDD)",
                         "description": "Represent which kind disk will be used to provision volume"
                     },
                     "ProvisionerType": {
@@ -105,7 +106,7 @@
                         "title": "EnableHA",
                         "type": "boolean",
                         "description": "If enabled, you need install drbd kernel module on each node first",
-                        "ui:hidden": "{{rootFormData.config.EnableDRBD === false}}"
+                        "default": "true"
                     },
                     "Replicas": {
                         "title": "Replicas",
