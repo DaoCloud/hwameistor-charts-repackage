@@ -1,0 +1,24 @@
+apiVersion: v1
+entries:
+  hwameistor:
+  - apiVersion: v2
+    appVersion: v0.6.0
+    created: "2022-12-02T02:25:03.102303282Z"
+    description: the HwameiStor local storage
+    digest: f6c8ef4d868a01cd670a13e9b814b58df4fcc67633aa9c8b639d7703bb234eec
+    name: hwameistor
+    type: application
+    urls:
+    - https://DaoCloud.github.io/hwameistor-charts-repackage/hwameistor-v0.6.0.tgz
+    version: v0.6.0
+  - apiVersion: v2
+    appVersion: v0.4.2
+    created: "2022-12-02T02:25:03.099630159Z"
+    description: the HwameiStor local storage
+    digest: 87bc0f65412b5a9abcaa861238acfdcd6b0584624df907e38a59f670049e9306
+    name: hwameistor
+    type: application
+    urls:
+    - https://DaoCloud.github.io/hwameistor-charts-repackage/hwameistor-v0.4.2.tgz
+    version: v0.4.2
+generated: "2022-12-02T02:25:03.097943744Z"
